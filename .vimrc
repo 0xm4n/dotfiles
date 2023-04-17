@@ -77,6 +77,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'keremc/asyncomplete-clang.vim'
+" Theme
+Plug 'sainnhe/sonokai'
 
 call plug#end()
 
