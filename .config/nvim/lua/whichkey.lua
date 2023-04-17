@@ -1,0 +1,99 @@
+-- local wk = require("which-key")
+--
+-- wk.setup({
+-- 	show_help = false,
+-- 	show_keys = false,
+-- 	key_labels = { ["<leader>"] = "SPC" },
+-- 	ignore_missing = true,
+-- })
+--
+-- -- define key table for input strings
+-- local sym_map = {
+-- 	["s"] = "Find this symbol",
+-- 	["g"] = "Find this global defination",
+-- 	["c"] = "Find functions calling this function",
+-- 	["t"] = "Find this text string",
+-- 	["e"] = "Find this egrep pattern",
+-- 	["f"] = "Find this file",
+-- 	["i"] = "Find files #including this file",
+-- 	["d"] = "Find functions called by this function",
+-- 	["a"] = "Find places where this symbol is assigned a value",
+-- }
+--
+-- -- function to print xcscpoe.el like prompts
+-- cscope_search = function(operation, default_symbol)
+-- 	vim.cmd(":cs find " .. operation .. " " .. default_symbol)
+-- 	vim.cmd("copen")
+-- end
+--
+-- local leader = {
+-- 	["b"] = {
+-- 		name = "+ Buffer",
+-- 		["d"] = { "<cmd>bd<CR>", "Delete Buffer" },
+-- 		["n"] = { "<cmd>BufferLineCycleNext<CR>", "Next Buffer" },
+-- 		["p"] = { "<cmd>BufferLineCyclePrev<CR>", "Prev Buffer" },
+-- 		["c"] = { "<cmd>BufferLinePickClose<CR>", "Close Buffer" },
+-- 		["m"] = {
+-- 			name = "+move",
+-- 			["n"] = { "<cmd>BufferLineMoveNext<CR>", "Next Buffer" },
+-- 			["p"] = { "<cmd>BufferLineMovePrev<CR>", "Prev Buffer" },
+-- 		},
+-- 	},
+-- 	["f"] = {
+-- 		name = "+ Telescope",
+-- 		["f"] = { "<cmd> Telescope find_files <CR>", "Find Files" },
+-- 		["g"] = { "<cmd>lua require('telescope.builtin').live_grep({only_sort_text = true})<cr>", "Live Grep" },
+-- 		["b"] = { "<cmd> Telescope buffers <CR>", "Buffers" },
+-- 		["h"] = { "<cmd> Telescope help_tags <CR>", "Help Tags" },
+-- 		["s"] = { "<cmd> Telescope git_status <CR>", "Git Status" },
+-- 		["d"] = { "<cmd> Telescope current_buffer_fuzzy_find<CR>", "Current Buff Fuzzy Find" },
+-- 		["t"] = { "<cmd> Telescope current_buffer_tags<CR>", "Current Buff Tags" },
+-- 		["q"] = { "<cmd> Telescope quickfixhistory<CR>", "Quickfix History" },
+-- 	},
+-- 	["g"] = {
+-- 		name = "+ LSP Fzf",
+-- 		["s"] = { "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<CR>", "Workspace Symbols" },
+-- 		["d"] = { "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", "Document Symbols" },
+-- 		["i"] = { "<cmd> Telescope lsp_implementation<CR>", "Implementation" },
+-- 		["r"] = { "<cmd> Telescope lsp_references<CR>", "References" },
+--
+-- 	},
+-- 	["<TAB>"] = {
+-- 		name = "+ Tab",
+-- 		["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
+-- 		["n"] = { "<cmd>tabnext<CR>", "Next" },
+-- 		["d"] = { "<cmd>tabclose<CR>", "Close" },
+-- 		["p"] = { "<cmd>tabprevious<CR>", "Previous" },
+-- 	},
+-- 	["o"] = {
+-- 		name = "+ Open",
+-- 		["n"] = { "<cmd> NvimTreeToggle<CR>", "NvimTree Toggle" },
+-- 		["f"] = { "<cmd> NvimTreeFindFile<CR>", "NvimTree FindFile" },
+-- 		["e"] = { '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR>', "Open Diagnostic" },
+-- 	},
+-- 	-- ["c"] = {
+-- 	-- 	name = "+ cscope",
+-- 	-- 	["s"] = { "<cmd>lua cs find s <C-R>=expand('<cword>')<CR><CR>", "Symbol" },
+-- 	-- 	["g"] = { "<cmd>lua cs find g <C-R>=expand(\"<cword>\")<CR><CR>", "Global Definitions" },
+-- 	-- 	["c"] = { "<cmd>lua cs find c <C-R>=expand(\"<cword>\")<CR><CR>", "Calls" },
+-- 		-- ["t"] = { "<cmd>lua vim.cmd(:cs find t vim.fn.expand('<cword>')<CR>)<CR>", "Text" },
+-- 	-- 	["e"] = { "<cmd>lua cs find e <C-R>=expand(\"<cword>\")<CR><CR>", "egrep Search" },
+-- 	-- 	["f"] = { "<cmd>lua cs find f <C-R>=expand(\"<cfile>\")<CR><CR>", "File" },
+-- 	-- 	["i"] = { "<cmd>lua cs find i ^<C-R>=expand(\"<cfile>\")<CR>$<CR>", "Includes" },
+-- 	-- 	["d"] = { "<cmd>lua cs find d <C-R>=expand(\"<cword>\")<CR><CR>", "Called" },
+-- 	-- },
+-- 	["c"] = {
+-- 		name = "+code",
+-- 		["s"] = { "<cmd>lua cscope_search('s', vim.fn.expand('<cword>'))<cr>", sym_map["s"] },
+-- 		["g"] = { "<cmd>lua cscope_search('g', vim.fn.expand('<cword>'))<cr>", sym_map["g"] },
+-- 		["c"] = { "<cmd>lua cscope_search('c', vim.fn.expand('<cword>'))<cr>", sym_map["c"] },
+-- 		["t"] = { "<cmd>lua cscope_search('t', vim.fn.expand('<cword>'))<cr>", sym_map["t"] },
+-- 		["e"] = { "<cmd>lua cscope_search('e', vim.fn.expand('<cword>'))<cr>", sym_map["e"] },
+-- 		["f"] = { "<cmd>lua cscope_search('f', vim.fn.expand('<cfile>'))<cr>", sym_map["f"] },
+-- 		["i"] = { "<cmd>lua cscope_search('i', vim.fn.expand('<cfile>'))<cr>", sym_map["i"] },
+-- 		["d"] = { "<cmd>lua cscope_search('d', vim.fn.expand('<cword>'))<cr>", sym_map["d"] },
+-- 		["a"] = { "<cmd>lua cscope_search('a', vim.fn.expand('<cword>'))<cr>", sym_map["a"] },
+-- 	},
+-- }
+--
+-- wk.register(leader, { prefix = "<leader>" })
