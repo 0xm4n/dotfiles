@@ -35,6 +35,12 @@ let g:c_syntax_for_h=1		" for *.h files use C syntax instead of C++
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 
 " Defaults everyone can agree on
