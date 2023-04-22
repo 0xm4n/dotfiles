@@ -13,8 +13,6 @@ require("cscope")
 require("misc")
 require("lualine-nvim")
 require("whichkey")
--- require("theme")
-
 -- require("barbar-nvim")
 -- require("airline")
 

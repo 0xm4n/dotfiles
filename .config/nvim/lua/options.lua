@@ -31,6 +31,8 @@ opt.title = true
 opt.updatetime = 300			-- faster completion (4000ms default)
 opt.wildmode = "longest:full"
 opt.wildoptions = "pum"
+opt.ruler = false
+opt.undofile = true
                      
 vim.cmd [[
 let g:c_syntax_for_h = 1
