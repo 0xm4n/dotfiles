@@ -18,8 +18,8 @@ keymap("n", "<C-Down>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-Up>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<C-Right>", "<C-w>l", opts)
 
+keymap("n", "<C-Right>", "<C-w>l", opts)
 -- Jump to start & end of line
 keymap("n", "H", "^", opts)
 keymap("n", "L", "$", opts)
@@ -46,6 +46,10 @@ keymap("n", "<leader>i", "<C-i>", opts)
 -- Split
 keymap("n", "<leader>-", ":sp<CR>", opts)
 keymap("n", "<leader>|", ":vsp<CR>", opts)
+
+-- Better delete
+keymap("n", "<Leader>d", '"_d', opts)
+keymap("v", "<Leader>d", '"_d', opts)
 
 -- subtitute.nvim
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", term_opts)
@@ -121,6 +125,7 @@ keymap("n", "<leader>oe", '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR
 
 keymap("n", "<F8>", ':TagbarToggle<CR>', opts)
 
+vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
 -- cscope
 csearch = function(operation, default_symbol)
 	vim.cmd(":cs find " .. operation .. " " .. default_symbol)
