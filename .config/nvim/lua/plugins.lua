@@ -53,8 +53,14 @@ return require('packer').startup(function(use)
 	-- Undo history visualizer
 	use 'mbbill/undotree'
 	-- Debugger
-	use 'mfussenegger/nvim-dap'
-	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	use {
+		{'mfussenegger/nvim-dap'},
+		{'rcarriga/nvim-dap-ui'},
+		{'theHamsta/nvim-dap-virtual-text'},
+	}
+	-- use 'mfussenegger/nvim-dap'
+	-- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	-- use 'theHamsta/nvim-dap-virtual-text'
 	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -123,10 +129,12 @@ return require('packer').startup(function(use)
 		},
 		after = "nvim-web-devicons", -- keep this if you're using NvChad
 		config = function()
-			require("barbecue").setup()
+			require("barbecue").setup({
+				attach_navic = false,
+				show_navic = false,
+			})
 		end,
 	})
-	use "folke/neodev.nvim"
 	-- LSP Support
 	use {
 		{'neovim/nvim-lspconfig'},             -- Required
