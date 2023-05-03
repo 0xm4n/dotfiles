@@ -12,14 +12,10 @@ vim.g.maplocalleader = " "
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-Left>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-Down>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-Up>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<C-Right>", "<C-w>l", opts)
 -- Jump to start & end of line
 keymap("n", "H", "^", opts)
 keymap("n", "L", "$", opts)
@@ -39,17 +35,9 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 vim.keymap.set('n', 'J', 'mzJ`z', opts)
 
--- Jump list
-keymap("n", "<leader>o", "<C-o>", opts)
-keymap("n", "<leader>i", "<C-i>", opts)
-
 -- Split
 keymap("n", "<leader>-", ":sp<CR>", opts)
 keymap("n", "<leader>|", ":vsp<CR>", opts)
-
--- Better delete
-keymap("n", "<Leader>d", '"_d', opts)
-keymap("v", "<Leader>d", '"_d', opts)
 
 -- subtitute.nvim
 keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>", term_opts)
@@ -60,9 +48,6 @@ keymap("x", "s", "<cmd>lua require('substitute').visual()<cr>", term_opts)
 -- indent code block
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
-
--- U = redo
-keymap("n", "U", "<C-r>", opts)
 
 -- LSP
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -79,21 +64,6 @@ vim.keymap.set('n', '<leader>bp','<cmd>BufferLineCyclePrev<CR>', opts)
 vim.keymap.set('n', '<leader>bc','<cmd>BufferLinePickClose<CR>', opts)
 vim.keymap.set('n', '<leader>bmn','<cmd>BufferLineMoveNext<CR>', opts)
 vim.keymap.set('n', '<leader>bmp','<cmd>BufferLineMovePrev<CR>', opts)
-
--- Tabs
-keymap("n", "<leader>1", "1gt<CR>", opts)
-keymap("n", "<leader>2", "2gt<CR>", opts)
-keymap("n", "<leader>3", "3gt<CR>", opts)
-keymap("n", "<leader>4", "4gt<CR>", opts)
-keymap("n", "<leader>5", "5gt<CR>", opts)
-keymap("n", "<leader>6", "6gt<CR>", opts)
-keymap("n", "<leader>7", "7gt<CR>", opts)
-keymap("n", "<leader>8", "8gt<CR>", opts)
-keymap("n", "<leader>9", "9gt<CR>", opts)
-vim.keymap.set('n', '<leader>n', "<cmd>tabnew<CR>", opts)
-vim.keymap.set('n', '<leader><TAB>', "<cmd>tabnext<CR>", opts)
-vim.keymap.set('n', '<leader><S-TAB>', "<cmd>tabprevious<CR>", opts)
-vim.keymap.set('n', '<leader>x', "<cmd>tabclose<CR>", opts)
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
@@ -126,12 +96,12 @@ keymap("n", "<leader>oe", '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR
 keymap("n", "<F8>", ':TagbarToggle<CR>', opts)
 
 vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
+
 -- cscope
 csearch = function(operation, default_symbol)
 	vim.cmd(":cs find " .. operation .. " " .. default_symbol)
 	vim.cmd("copen")
 end
-
 keymap("n", "<leader>cs", [[<cmd>lua csearch('s', vim.fn.expand("<cword>"))<cr>]], opts)
 keymap("n", "<leader>cg", [[<cmd>lua csearch('g', vim.fn.expand("<cword>"))<cr>]], opts)
 keymap("n", "<leader>cc", [[<cmd>lua csearch('c', vim.fn.expand("<cword>"))<cr>]], opts)
@@ -142,3 +112,16 @@ keymap("n", "<leader>ci", [[<cmd>lua csearch('i', vim.fn.expand("<cfile>"))<cr>]
 keymap("n", "<leader>cd", [[<cmd>lua csearch('d', vim.fn.expand("<cword>"))<cr>]], opts)
 keymap("n", "<leader>ca", [[<cmd>lua csearch('a', vim.fn.expand("<cword>"))<cr>]], opts)
 
+-- move-nvim
+local opts = { noremap = true, silent = true }
+-- Normal-mode commands
+vim.keymap.set('n', '<M-j>', ':MoveLine(1)<CR>', opts)
+vim.keymap.set('n', '<M-k>', ':MoveLine(-1)<CR>', opts)
+vim.keymap.set('n', '<M-h>', ':MoveHChar(-1)<CR>', opts)
+vim.keymap.set('n', '<M-l>', ':MoveHChar(1)<CR>', opts)
+
+-- Visual-mode commands
+vim.keymap.set('v', '<M-j>', ':MoveBlock(1)<CR>', opts)
+vim.keymap.set('v', '<M-k>', ':MoveBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<M-h>', ':MoveHBlock(-1)<CR>', opts)
+vim.keymap.set('v', '<M-l>', ':MoveHBlock(1)<CR>', opts)

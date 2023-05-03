@@ -31,8 +31,6 @@ return require('packer').startup(function(use)
 	-- Gitsigns : show git modified line
 	use 'lewis6991/gitsigns.nvim'
 	-- Color theme
-	-- use 'Mofiqul/vscode.nvim'
-	-- use 'folke/tokyonight.nvim'
 	use 'sainnhe/sonokai'
 	-- (Vim) Clipboard : copy into system clipboard
 	use 'ojroques/nvim-osc52'
@@ -54,6 +52,9 @@ return require('packer').startup(function(use)
 	use "MattesGroeger/vim-bookmarks"
 	-- Undo history visualizer
 	use 'mbbill/undotree'
+	-- Debugger
+	use 'mfussenegger/nvim-dap'
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -83,11 +84,6 @@ return require('packer').startup(function(use)
 	use {
 		'akinsho/bufferline.nvim', tag = "v3.*",
 		requires = 'nvim-tree/nvim-web-devicons'
-	}
-	-- Smooth scrolling
-	use {
-		'karb94/neoscroll.nvim',
-		config = function() require('neoscroll').setup() end
 	}
 	-- nvim-tree : file tree
 	use {
@@ -130,6 +126,7 @@ return require('packer').startup(function(use)
 			require("barbecue").setup()
 		end,
 	})
+	use "folke/neodev.nvim"
 	-- LSP Support
 	use {
 		{'neovim/nvim-lspconfig'},             -- Required
@@ -149,29 +146,4 @@ return require('packer').startup(function(use)
 		{'rafamadriz/friendly-snippets'}, -- Optional
 	}
 	use 'p00f/clangd_extensions.nvim'
-	-- Highlight word under the cursor
-	-- use {
-	-- 	"RRethy/vim-illuminate",
-	-- }
-	-- which-key
-	-- use {"folke/which-key.nvim"}
-	-- use 'simrat39/symbols-outline.nvim'
-	-- use {
-	-- 	'romgrk/barbar.nvim',
-	-- 	-- requires = 'nvim-web-devicons'
-	-- }
-	-- Gitgutter
-	-- use 'airblade/vim-gitgutter'
-	-- Folding
-	-- use {
-	-- 	'kevinhwang91/nvim-ufo',
-	-- 	requires = {
-	-- 		'kevinhwang91/promise-async',
-	-- 	},
-	-- }
-	-- Status line
-	-- use {
-	-- 	'vim-airline/vim-airline',
-	-- 	requires = 'vim-airline/vim-airline-themes',
-	-- }
 end)
