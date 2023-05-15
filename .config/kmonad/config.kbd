@@ -1,0 +1,33 @@
+(defcfg
+  input  (device-file "/dev/input/by-path/pci-0000:00:14.0-usb-0:2:1.0-event-kbd")
+  output (uinput-sink "KMonad kbd"))
+
+(defalias
+  extend (tap-next esc (layer-toggle extends)))
+
+(defsrc
+  esc      f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv      1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab      q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  caps     a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
+  lsft     z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  lctl     lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
+)
+
+(deflayer base
+  caps     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv      1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab      q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
+  @extend  a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
+  lsft     z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
+  lctl     lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
+)
+
+(deflayer extends
+  _        _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _        _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
+  _        _    _    _    _    _    _    pgup home end  pgdn _    _    _     _    _    _     _    _    _    _
+  _        _    _    _    lctl _    left down up   rght _    _    _                          _    _    _
+  _        _    _    _    _    _    bspc _    _    _    _    _                    _          _    _    _    _
+  _        _    _              _              _    _    _    _               _    _    _     _    _   
+)
