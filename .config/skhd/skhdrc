@@ -11,8 +11,8 @@ alt + shift - h : yabai -m window --swap west
 alt + shift - l : yabai -m window --swap east
 
 # Make window native fullscreen
-alt - f : yabai -m window --toggle zoom-fullscreen
-alt + shift - f : yabai -m window --toggle native-fullscreen
+alt + shift - f : yabai -m window --toggle zoom-fullscreen
+# alt + shift - f : yabai -m window --toggle native-fullscreen
 
 # toggle window float
 alt + shift - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
