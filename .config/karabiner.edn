@@ -1,39 +1,67 @@
 {:main [{:des "caps mode"
     :rules [
         [:##caps_lock ["caps-mode" 1] nil {:afterup ["caps-mode" 0]
-                                         :alone :escape}]
+                                           :alone :escape}]
+        ;; Vim quickfix
+        [:q :!Tq ["caps-mode" 1]]
+        ;; Vim window control
+        [:w :!Tw ["caps-mode" 1]]
+        ;; Vim move screen down one line
+        [:e :!Te ["caps-mode" 1]]
+        ;; Vim redo
+        [:r :!Tr ["caps-mode" 1]]
+        ;; Vim jump to the tag under cursor
+        [:t :!Tt ["caps-mode" 1]]
+        ;; Vim move screen up one line
+        [:y :!Ty ["caps-mode" 1]]
+        ;; Vim move back 1/2 a screen
+        [:u :!Tu ["caps-mode" 1]]
+        ;; Vim go to newer position in jump
+        [:i :!Ti ["caps-mode" 1]]
+        ;; Vim go to older position in jump list
+        [:o :!To ["caps-mode" 1]]
+        ;; Vim previous
+        [:p :!Tp ["caps-mode" 1]]
+        ;; 
+        [:open_bracket :!Topen_bracket ["caps-mode" 1]]
+        ;; ctag jump into
+        [:close_bracket :!Tclose_bracket ["caps-mode" 1]]
+        ;; Vim toggle term
+        [:backslash :!Tbackslash ["caps-mode" 1]]
+
+        ;; tmux - C-A
+        [:a :!Ta ["caps-mode" 1]]
+        ;; Vim move forward 1/2 a screen
+        [:d :!Td ["caps-mode" 1]]
+        ;; control
+        [:##s :left_control ["caps-mode" 1]]
+        ;; Vim LSP
+        [:f :!Tf ["caps-mode" 1]]
         ;; navigation 
         [:h :left_arrow ["caps-mode" 1]]
         [:l :right_arrow ["caps-mode" 1]]
         [:k :up_arrow ["caps-mode" 1]]
         [:j :down_arrow ["caps-mode" 1]]
+
+        ;; SIGTSTP signal
+        [:z :!Tz ["caps-mode" 1]]
+        ;; SIGINT signal
+        [:c :!Tc ["caps-mode" 1]]
+        ;; Vim start visual block mode
+        [:v :!Tv ["caps-mode" 1]]
+        ;; Vim LSP
+        [:b :!Tb ["caps-mode" 1]]
         ;; delete
         [:n :delete_or_backspace ["caps-mode" 1]]
         [:m :delete_forward ["caps-mode" 1]]
         [:comma :!Odelete_or_backspace ["caps-mode" 1]]
         [:period :!Odelete_forward ["caps-mode" 1]]
+        ;; Vim
+        [:slash :!Tslash ["caps-mode" 1]]
+
         ;; enter
         [:##spacebar :return_or_enter ["caps-mode" 1]]
-        ;; control
-        [:##d :left_control ["caps-mode" 1]]
-        ;; move backward by word
-        [:b :!Ob ["caps-mode" 1]]
-        ;; tmux - C-A
-        [:a :!Ta ["caps-mode" 1]]
-        ;; shift
-        ;; [:##d :left_shift ["caps-mode" 1]]
-        ;; option/alt
-        ;; [:##s :left_option ["caps-mode" 1]]
-        ;; SIGINT signal
-        [:c :!Tc ["caps-mode" 1]]
-        ;; SIGTSTP signal
-        [:z :!Tz ["caps-mode" 1]]
-        ;; PageUp/PageDown
-        [:#Cu :page_up ["caps-mode" 1]]
-        [:#Cp :page_down ["caps-mode" 1]]
-        ;; Home/End
-        [:#Ci :home ["caps-mode" 1]]
-        [:#Co :end ["caps-mode" 1]]
+
         ;; Fn
         [:1 :f1 ["caps-mode" 1]]
         [:2 :f2 ["caps-mode" 1]]
@@ -47,13 +75,21 @@
         [:0 :f10 ["caps-mode" 1]]
         [:hyphen :f11 ["caps-mode" 1]]
         [:equal_sign :f12 ["caps-mode" 1]]
+
         ;; Misc
-        [:semicolon :!S1 ["caps-mode" 1]]
-        [:quote :!Shyphen ["caps-mode" 1]]
-        [:open_bracket :!S9 ["caps-mode" 1]]
-        [:close_bracket :!S0 ["caps-mode" 1]]
-        [:e :equal_sign ["caps-mode" 1]]
-        [:t :!Sgrave_accent_and_tilde ["caps-mode" 1]]
-        [:escape :caps_lock]
+        [:tab :caps_lock ["caps-mode" 1]]
+
+        ;; C-move
+        [:!Ch :!Th ]
+        [:!Cl :!Tl ]
+        [:!Cj :!Tj ]
+        [:!Ck :!Tk ]
+
+        ;; PageUp/PageDown
+        [:!Cu :page_up ["caps-mode" 1]]
+        [:!Cp :page_down ["caps-mode" 1]]
+        ;; Home/End
+        [:!Ci :home ["caps-mode" 1]]
+        [:!Co :end ["caps-mode" 1]]
     ]}]
 }
