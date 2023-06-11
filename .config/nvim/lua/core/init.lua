@@ -5,6 +5,7 @@ require("core.keymaps")
 require("core.plugins")
 
 require("plugins.bufferline")
+require("plugins.cmp")
 require("plugins.cscope")
 require("plugins.dap")
 require("plugins.gitsigns")
