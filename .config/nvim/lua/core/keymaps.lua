@@ -91,6 +91,7 @@ vim.keymap.set('n', '<leader>fd',  "<cmd>lua require('telescope.builtin').curren
 vim.keymap.set('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').current_buffer_tags()<cr>", opts)
 vim.keymap.set('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
 vim.keymap.set('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
+vim.keymap.set('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
 -- vim.keymap.set('n', ',fg',':execute \'Telescope grep_string default_text=\' . expand(\'<cword>\')<CR>', opts)
 vim.keymap.set('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
 
