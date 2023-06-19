@@ -72,6 +72,7 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', '<C-S-k>', vim.lsp.buf.signature_help, opts)
 vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action, opts)
 
 -- Buffer
 vim.keymap.set('n', '<leader>bd','<cmd>bd<CR>', opts)
@@ -129,7 +130,7 @@ keymap("n", "<leader>ce", [[<cmd>lua csearch('e', vim.fn.expand("<cword>"))<cr>]
 keymap("n", "<leader>cf", [[<cmd>lua csearch('f', vim.fn.expand("<cfile>"))<cr>]], opts)
 keymap("n", "<leader>ci", [[<cmd>lua csearch('i', vim.fn.expand("<cfile>"))<cr>]], opts)
 keymap("n", "<leader>cd", [[<cmd>lua csearch('d', vim.fn.expand("<cword>"))<cr>]], opts)
-keymap("n", "<leader>ca", [[<cmd>lua csearch('a', vim.fn.expand("<cword>"))<cr>]], opts)
+-- keymap("n", "<leader>ca", [[<cmd>lua csearch('a', vim.fn.expand("<cword>"))<cr>]], opts)
 
 -- quickfix
 vim.keymap.set("n", "<leader>col", ':colder<CR>', opts)
