@@ -39,6 +39,8 @@ HISTFILE=~/.zsh_history
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # alias
+# makes all aliases function correctly when used with sudo
+alias sudo='sudo '
 # edit rc
 alias rc='nvim ~/.zshrc'
 alias rcs='nvim ~/.zshrc && source ~/.zshrc'
