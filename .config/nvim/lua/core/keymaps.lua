@@ -46,6 +46,10 @@ vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
 -- vim.keymap.set('x', '<leader>y', ":call system('nc -N localhost 8377', @0)<CR>")
 -- vim.keymap.set('n', '<leader>y', ":call system('nc -N localhost 8377', @0)<CR>")
 
+-- Inline motion
+keymap('x', 'il', '^o$h',opts)
+keymap('n', 'il', ':noremal vil<CR>',opts)
+
 -- Keep next in the middle
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
