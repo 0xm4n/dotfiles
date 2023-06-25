@@ -82,6 +82,11 @@ vim.keymap.set('n', '<leader>bc','<cmd>BufferLinePickClose<CR>', opts)
 vim.keymap.set('n', '<leader>bmn','<cmd>BufferLineMoveNext<CR>', opts)
 vim.keymap.set('n', '<leader>bmp','<cmd>BufferLineMovePrev<CR>', opts)
 
+-- Tab
+vim.keymap.set('n', '<leader>tn','<cmd>tabnext<CR>', opts)
+vim.keymap.set('n', '<leader>tp','<cmd>tabprevious<CR>', opts)
+vim.keymap.set('n', '<leader>tc','<cmd>tabclose<CR>', opts)
+
 -- Telescope
 vim.keymap.set('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 vim.keymap.set('n', '<leader>fg',  "<cmd>lua require('telescope.builtin').live_grep({only_sort_text = true})<cr>", opts)
