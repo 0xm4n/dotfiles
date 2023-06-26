@@ -48,7 +48,7 @@ vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
 
 -- Inline motion
 keymap('x', 'il', '^o$h',opts)
-keymap('n', 'il', ':noremal vil<CR>',opts)
+keymap('n', 'il', ':normal vil<CR>',opts)
 
 -- Keep next in the middle
 keymap("n", "n", "nzzzv", opts)
