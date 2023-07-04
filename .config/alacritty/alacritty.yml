@@ -810,6 +810,8 @@ key_bindings:
   - { key: P,        mods: Alt,       chars: "\x1bp"                       }
   - { key: P,        mods: Alt|Shift, chars: "\x1bP"                       }
   - { key: C,        mods: Alt,       chars: "\x1bc"                       }
+  - { key: C,        mods: Super,     action: Copy                         }
+  - { key: V,        mods: Super,     action: Paste                        }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
