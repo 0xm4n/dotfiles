@@ -23,16 +23,17 @@ packer.init({
 
 return require('packer').startup(function(use)
 	-- Packer can manage itself
-	--
 	use 'wbthomason/packer.nvim'
-	-- Git diff view
-	use "sindrets/diffview.nvim"
+	-- tmux navigator
+	use 'christoomey/vim-tmux-navigator'
+	-- UI dressing
+	use 'stevearc/dressing.nvim'
 	-- vim-illuminate
 	use 'RRethy/vim-illuminate'
 	-- copilot.vim
 	use 'github/copilot.vim'
-	-- tmux-copy
-	use 'wincent/vim-clipper'
+	-- nvim better quickfix
+	use 'kevinhwang91/nvim-bqf'
 	-- (Vim) Git
 	use 'tpope/vim-fugitive'
 	-- (Vim) Git-messenger : show git commit
@@ -43,35 +44,38 @@ return require('packer').startup(function(use)
 	use 'sainnhe/sonokai'
 	-- (Vim) Clipboard : copy into system clipboard
 	use 'ojroques/nvim-osc52'
+	-- Notify
+	use {
+		'rcarriga/nvim-notify',
+		config = function ()
+			require("notify").setup {
+				stages = 'fade_in_slide_out',
+				background_colour = 'FloatShadow',
+				timeout = 3000,
+			}
+			vim.notify = require('notify')
+		end
+	}
 	-- Move lines and blocks : move multiple line up and down
 	use 'fedepujol/move.nvim'
 	-- Treesitter
 	use("nvim-treesitter/nvim-treesitter", {run = ':TSUpdate'})
 	-- Symbol outline
-	use 'preservim/tagbar'
+	use 'liuchengxu/vista.vim'
 	-- Toggle terminal
 	use {"akinsho/toggleterm.nvim", tag = '*'}
+	-- Windows maximizer
+	use 'szw/vim-maximizer'
 	-- Icons
 	use {'nvim-tree/nvim-web-devicons'}
-	-- Quickfix enter
-	use {'yssl/QFEnter'}
 	-- Indentation guides line
 	use "lukas-reineke/indent-blankline.nvim"
 	-- Bookmarks
 	use "MattesGroeger/vim-bookmarks"
+	-- vim-resize
+	use "breuckelen/vim-resize"
 	-- Undo history visualizer
 	use 'mbbill/undotree'
-	-- window.nvim
-	use {
-		"anuvyklack/windows.nvim",
-		requires = "anuvyklack/middleclass",
-		config = function()
-			vim.o.winwidth = 15
-			vim.o.winminwidth = 15
-			vim.o.equalalways = false
-			require('windows').setup()
-		end
-	}
 	-- hop.nvim
 	use {
 		'phaazon/hop.nvim',
@@ -79,7 +83,7 @@ return require('packer').startup(function(use)
 			require('hop').setup {}
 		end
 	}
-	-- nvim-surronund
+	-- nvim-surround
 	use {
 		'kylechui/nvim-surround',
 		config = function()
@@ -90,6 +94,18 @@ return require('packer').startup(function(use)
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
+	}
+	-- Highlight TODO
+	use {
+		'folke/todo-comments.nvim',
+		depends = 'nvim-lua/plenary.nvim',
+		config = function()
+			require('todo-comments').setup({
+				keywords = {
+					TODO = { icon = " ", color = "warning" },
+				}
+			})
+		end
 	}
 	-- Comment.nvim
 	use {
@@ -106,7 +122,7 @@ return require('packer').startup(function(use)
 		"windwp/nvim-autopairs",
 		config = function() require("nvim-autopairs").setup {} end
 	}
-	-- subtitute.nvim : yank and paste
+	-- subtitute.nvim
 	use({
 		"gbprod/substitute.nvim",
 		config = function() require("substitute").setup({}) end
@@ -119,9 +135,6 @@ return require('packer').startup(function(use)
 	-- nvim-tree : file tree
 	use {
 		'nvim-tree/nvim-tree.lua',
-		-- requires = {
-		-- 	'nvim-tree/nvim-web-devicons', -- optional, for file icons
-		-- },
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
 	-- Debugger
@@ -131,10 +144,10 @@ return require('packer').startup(function(use)
 		{'theHamsta/nvim-dap-virtual-text'},
 		{'nvim-telescope/telescope-dap.nvim'},
 	}
+	use 'ldelossa/nvim-dap-projects'
 	-- greeter
 	use {
 		'goolord/alpha-nvim',
-		-- requires = { 'nvim-tree/nvim-web-devicons' },
 		config = function ()
 			require'alpha'.setup(require'alpha.themes.startify'.config)
 		end
@@ -143,13 +156,7 @@ return require('packer').startup(function(use)
 	use {
 		"folke/trouble.nvim",
 		requires = "nvim-tree/nvim-web-devicons",
-		config = function()
-			require("trouble").setup {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			}
-		end
+		config = function() require("trouble").setup { } end
 	}
 	-- winbar
 	use({
@@ -192,8 +199,24 @@ return require('packer').startup(function(use)
 			-- Snippets
 			{'L3MON4D3/LuaSnip', run = "make install_jsregexp"}, -- Required
 			{'rafamadriz/friendly-snippets'}, -- Optional
+
+			-- Misc
+			{'onsails/lspkind.nvim'},
+			{'p00f/clangd_extensions.nvim'},
 		}
 	}
-	use 'p00f/clangd_extensions.nvim'
+	-- Git diff view
+	-- use "sindrets/diffview.nvim"
+	-- tmux-copy
+	-- use 'wincent/vim-clipper'
+	-- use 'preservim/tagbar'
+	-- Quickfix enter
+	-- use {'yssl/QFEnter'}
+	-- -- wilder.nvim
+	-- use 'gelguy/wilder.nvim'
+	-- -- fzf
+	-- use {
+	-- 	'junegunn/fzf',
+	-- 	run = function() vim.fn['fzf#install']() end
+	-- }
 end)
-
