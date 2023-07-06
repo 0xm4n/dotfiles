@@ -43,11 +43,9 @@ keymap("n", "<C-c>", ":q<CR>", opts)
 vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, {expr = true})
 vim.keymap.set('n', '<leader>yy', '<leader>c_', {remap = true})
 vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
--- vim.keymap.set('x', '<leader>y', ":call system('nc -N localhost 8377', @0)<CR>")
--- vim.keymap.set('n', '<leader>y', ":call system('nc -N localhost 8377', @0)<CR>")
 
 -- Inline motion
-keymap('x', 'il', '^o$h',opts)
+keymap('x', 'il', '^o$h', opts)
 keymap('o', 'il', ':normal vil<CR>',opts)
 
 -- Keep next in the middle
@@ -102,8 +100,8 @@ vim.keymap.set('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').curren
 vim.keymap.set('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
 vim.keymap.set('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
 vim.keymap.set('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
--- vim.keymap.set('n', ',fg',':execute \'Telescope grep_string default_text=\' . expand(\'<cword>\')<CR>', opts)
 vim.keymap.set('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
+vim.keymap.set('n', ',fh',':execute \'Telescope help_tags default_text=\' . expand(\'<cword>\')<CR>', opts)
 
 -- Telescope LSP
 vim.keymap.set('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
@@ -122,8 +120,10 @@ keymap("n", "<leader>nf", "<cmd> NvimTreeFindFile<CR>", opts)
 keymap("n", "<leader>nn", "<cmd> NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>oe", '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR>', opts)
 
-keymap("n", "<F8>", ':TagbarToggle<CR>', opts)
+-- Vista
+keymap("n", "<F8>", '<cmd>Vista!!<CR>', opts)
 
+-- UndoTree
 vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
 
 -- cscope
@@ -137,19 +137,17 @@ keymap("n", "<leader>cc", [[<cmd>lua csearch('c', vim.fn.expand("<cword>"))<cr>]
 keymap("n", "<leader>ct", [[<cmd>lua csearch('t', vim.fn.expand("<cword>"))<cr>]], opts)
 keymap("n", "<leader>ce", [[<cmd>lua csearch('e', vim.fn.expand("<cword>"))<cr>]], opts)
 keymap("n", "<leader>cf", [[<cmd>lua csearch('f', vim.fn.expand("<cfile>"))<cr>]], opts)
-keymap("n", "<leader>ci", [[<cmd>lua csearch('i', vim.fn.expand("<cfile>"))<cr>]], opts)
 keymap("n", "<leader>cd", [[<cmd>lua csearch('d', vim.fn.expand("<cword>"))<cr>]], opts)
+-- keymap("n", "<leader>ci", [[<cmd>lua csearch('i', vim.fn.expand("<cfile>"))<cr>]], opts)
 -- keymap("n", "<leader>ca", [[<cmd>lua csearch('a', vim.fn.expand("<cword>"))<cr>]], opts)
 
 -- quickfix
-vim.keymap.set("n", "<leader>col", ':colder<CR>', opts)
-vim.keymap.set("n", "<leader>cnew", ':cnewer<CR>', opts)
+vim.keymap.set("n", "<leader>co", ':colder<CR>', opts)
+vim.keymap.set("n", "<leader>ci", ':cnewer<CR>', opts)
 vim.keymap.set("n", "<leader>cn", ':cnext<CR>', opts)
 vim.keymap.set("n", "<leader>cp", ':cp<CR>', opts)
 
 -- move-nvim
-local opts = { noremap = true, silent = true }
--- Normal-mode commands
 vim.keymap.set('n', '<M-j>', ':MoveLine(1)<CR>', opts)
 vim.keymap.set('n', '<M-k>', ':MoveLine(-1)<CR>', opts)
 vim.keymap.set('n', '<M-h>', ':MoveHChar(-1)<CR>', opts)
@@ -168,10 +166,9 @@ vim.keymap.set('', 'F', function() hop.hint_char1({ direction = directions.BEFOR
 vim.keymap.set('', '<leader>fw', function() hop.hint_words() end, {remap=true})
 vim.keymap.set('', '<leader>fl', function() hop.hint_lines_skip_whitespace() end, {remap=true})
 
-vim.keymap.set('n', '<C-w>z', '<cmd> WindowsMaximize<CR>')
-vim.keymap.set('n', '<C-w>_', '<cmd> WindowsMaximizeVertically<CR>')
-vim.keymap.set('n', '<C-w>|', '<cmd> WindowsMaximizeHorizontally<CR>')
-vim.keymap.set('n', '<C-w>=', '<cmd> WindowsEqualize<CR>')
+-- maximizer
+vim.keymap.set('n', '<C-w>z', '<cmd> MaximizerToggle<CR>')
+vim.keymap.set('v', '<C-w>z', '<cmd> MaximizerToggle<CR>')
 
 -- gitsigns
 vim.keymap.set('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
@@ -187,11 +184,24 @@ vim.keymap.set("n", "<F11>", ":lua require'dap'.step_into()<CR>")
 vim.keymap.set("n", "<F12>", ":lua require'dap'.step_out()<CR>")
 vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
-vim.keymap.set("n", "<leader>dc", ":lua require'dapui'.close()<CR>")
+vim.keymap.set("n", "<leader>dc", ":lua require'dap'.close()<CR> :lua require'dapui'.close()<CR>")
 
 vim.keymap.set('n', '<leader>dv',  "<cmd>lua require('telescope').extensions.dap.variables({})<CR>", opts)
 vim.keymap.set('n', '<leader>df',  "<cmd>lua require('telescope').extensions.dap.frames({})<CR>", opts)
 vim.keymap.set('n', '<leader>dl',  "<cmd>lua require('telescope').extensions.dap.list_breakpoints({})<CR>", opts)
 
 -- diagnostic
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+
+-- gitsigns
+vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
+
+-- hightlight TODO
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
+
+-- tmux navigator
+keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<cr>", opts)
+keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<cr>", opts)
+keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<cr>", opts)
+keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<cr>", opts)
