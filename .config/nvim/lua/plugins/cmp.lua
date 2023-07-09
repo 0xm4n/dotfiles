@@ -12,12 +12,16 @@ cmp.setup({
 		-- Navigate between snippet placeholder
 		['<C-f>'] = cmp_action.luasnip_jump_forward(),
 		['<C-b>'] = cmp_action.luasnip_jump_backward(),
+		-- ['<Tab>'] = cmp_action.luasnip_supertab(),
+		-- ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 	},
 	formatting = {
-		format = function(entry, vim_item)
-			vim_item.abbr = string.sub(vim_item.abbr, 1, 60)
-			return vim_item
-		end
+		fields = {'abbr', 'kind', 'menu'},
+		format = require('lspkind').cmp_format({
+			mode = 'symbol_text',
+			maxwidth = 60,
+			ellipsis_char = '...',
+		})
 	},
 	sources = {
 		{ name = 'nvim_lsp' },
