@@ -1,8 +1,32 @@
+local custom_components = {
+	-- Override 'encoding': Don't display if encoding is UTF-8.
+	encoding = function()
+		local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")  -- Note: '-' is a magic character
+		return ret
+	end,
+	-- fileformat: Don't display if &ff is unix.
+	fileformat = function()
+		local ret, _ = vim.bo.fileformat:gsub("^unix$", "")
+		return ret
+	end,
+	-- context (https://github.com/SmiteshP/nvim-navic)
+	lsp_context = function()
+		if pcall(require, "nvim-navic") then
+			local navic = require("nvim-navic")
+			if navic.is_available() then
+				return navic.get_location() or ''
+			end
+		end
+		return ''
+	end
+}
+
 require('lualine').setup {
 	options = {
-		icons_enabled = false,
-		theme = 'auto',
-		component_separators = { left = '', right = ''},
+		icons_enabled = true,
+		theme = 'sonokai',
+		-- component_separators = { left = '', right = ''},
+		component_separators = { left = '', right = ''},
 		section_separators = { left = '', right = ''},
 		disabled_filetypes = {
 			statusline = {},
@@ -19,11 +43,21 @@ require('lualine').setup {
 	},
 	sections = {
 		lualine_a = {'mode'},
-		lualine_b = {'branch', 'diff', 'diagnostics'},
-		lualine_c = {'filename'},
-		lualine_x = {'encoding', 'fileformat', 'filetype'},
-		lualine_y = {'progress'},
-		lualine_z = {'location'}
+		lualine_b = {'branch', 'diff'},
+		lualine_c = {
+			custom_components.lsp_context,
+		},
+		lualine_x = {
+			'searchcount',
+			'filename',
+			-- 'diagnostics'
+		},
+		lualine_y = {
+			custom_components.encoding,
+			custom_components.fileformat,
+			'filetype',
+		},
+		lualine_z = {'progress', 'location'}
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -37,5 +71,6 @@ require('lualine').setup {
 	winbar = {},
 	inactive_winbar = {},
 	extensions = {}
+	-- extensions = { 'nvim-tree' },
 }
 
