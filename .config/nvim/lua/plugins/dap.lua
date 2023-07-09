@@ -111,9 +111,9 @@ require("nvim-dap-virtual-text").setup{
 	all_references = false,
 	highlight_changed_variables = true,
 	highlight_new_as_changed = true,
+	clear_on_continue = true,
 }
 
 
 require('telescope').load_extension('dap')
-
 
