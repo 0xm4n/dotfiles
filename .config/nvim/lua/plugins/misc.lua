@@ -69,3 +69,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.cmd [[
 let g:tmux_navigator_no_mappings = 1
 ]]
+
+require('bqf').setup({
+	preview = {
+		auto_preview = false,
+		win_height = 999,
+	}
+})
