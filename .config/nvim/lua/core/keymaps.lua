@@ -17,15 +17,10 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize window
--- keymap("n", "<C-Left>", "<C-w>>", opts)
--- keymap("n", "<C-Right>", "<C-w><", opts)
--- keymap("n", "<C-Up>", "<C-w>+", opts)
--- keymap("n", "<C-Down>", "<C-w>-", opts)
-keymap("n", "<C-Left>", "<CMD>vertical resize +5<CR>", opts)
-keymap("n", "<C-Up>", "<CMD>resize +5<CR>", opts)
-keymap("n", "<C-Right>", "<CMD>vertical resize -5<CR>", opts)
-keymap("n", "<C-Down>", "<CMD>resize -5<CR>", opts)
-
+keymap("n", "<C-Left>", "<cmd>lua require('resize').ResizeLeft()<CR>", opts)
+keymap("n", "<C-Right>", "<cmd>lua require('resize').ResizeRight()<CR>", opts)
+keymap("n", "<C-Up>", "<cmd>lua require('resize').ResizeUp()<CR>", opts)
+keymap("n", "<C-Down>", "<cmd>lua require('resize').ResizeDown()<CR>", opts)
 
 keymap("n", "<Esc>", "<cmd>noh <CR>", opts)
 
@@ -36,6 +31,7 @@ keymap("n", "L", "$", opts)
 -- Quick Save
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
+keymap("n", ",q", ":qa<CR>", opts)
 keymap("n", "<leader>wq", ":wq<CR>", opts)
 keymap("n", "<C-c>", ":q<CR>", opts)
 
@@ -52,6 +48,10 @@ keymap('o', 'il', ':normal vil<CR>',opts)
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 vim.keymap.set('n', 'J', 'mzJ`z', opts)
+
+-- Center on page up/down
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
 
 -- Split
 keymap("n", "<leader>-", ":sp<CR>", opts)
@@ -194,7 +194,8 @@ vim.keymap.set('n', '<leader>dl',  "<cmd>lua require('telescope').extensions.dap
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 
 -- gitsigns
-vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
+-- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
+vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('cc542155c97cbffad83f39999fc7c7f4137f9312')<CR>", opts)
 
 -- hightlight TODO
 vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
