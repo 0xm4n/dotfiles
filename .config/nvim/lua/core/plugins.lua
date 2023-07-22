@@ -24,6 +24,9 @@ packer.init({
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+	-- local resize
+	-- use '~/build/resize.nvim/'
+	use '0xm4n/resize.nvim'
 	-- tmux navigator
 	use 'christoomey/vim-tmux-navigator'
 	-- UI dressing
@@ -73,7 +76,7 @@ return require('packer').startup(function(use)
 	-- Bookmarks
 	use "MattesGroeger/vim-bookmarks"
 	-- vim-resize
-	use "breuckelen/vim-resize"
+	-- use "breuckelen/vim-resize"
 	-- Undo history visualizer
 	use 'mbbill/undotree'
 	-- hop.nvim
@@ -93,7 +96,10 @@ return require('packer').startup(function(use)
 	-- Telescope
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
+		requires = {
+			{'nvim-lua/plenary.nvim'},
+		}
+
 	}
 	-- Highlight TODO
 	use {
@@ -203,6 +209,7 @@ return require('packer').startup(function(use)
 			-- Misc
 			{'onsails/lspkind.nvim'},
 			{'p00f/clangd_extensions.nvim'},
+			{'nvimdev/lspsaga.nvim'},
 		}
 	}
 	-- Git diff view
@@ -220,3 +227,4 @@ return require('packer').startup(function(use)
 	-- 	run = function() vim.fn['fzf#install']() end
 	-- }
 end)
+
