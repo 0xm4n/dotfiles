@@ -10,5 +10,9 @@ This repository provides custom configurations for the following tools and appli
 - zsh: alias, syntax highlight, auto suggestions, history, etc.
 - keyboard extend layer: rules for [Karabiner(macOS goku)](https://github.com/0xm4n/dotfiles/blob/main/.config/karabiner.edn), [Keyd(Linux)](https://github.com/0xm4n/dotfiles/blob/main/.config/keyd/default.conf) and AutoHotKey(Windows)
 
-### Keymap Overview
-![keyboard-extend-layer](https://github.com/0xm4n/keyboard-extend-layer/blob/main/extend-layer.jpeg)
+### Keyboard Layer Overview
+#### capslock layer
+![keyboard-extend-layer](https://github.com/0xm4n/keyboard-extend-layer/blob/main/extend-layer.png)
+
+#### alt/command layer
+![keyboard-extend-layer](https://github.com/0xm4n/keyboard-extend-layer/blob/main/extend-layer2.png)
