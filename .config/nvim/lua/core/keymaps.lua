@@ -1,9 +1,6 @@
-local opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
-
 -- Shorten funciton name
 local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -22,6 +19,7 @@ keymap("n", "<C-Right>", "<cmd>lua require('resize').ResizeRight()<CR>", opts)
 keymap("n", "<C-Up>", "<cmd>lua require('resize').ResizeUp()<CR>", opts)
 keymap("n", "<C-Down>", "<cmd>lua require('resize').ResizeDown()<CR>", opts)
 
+-- Esc to clear highlight
 keymap("n", "<Esc>", "<cmd>noh <CR>", opts)
 
 -- Jump to start & end of line
@@ -31,14 +29,7 @@ keymap("n", "L", "$", opts)
 -- Quick Save
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
-keymap("n", ",q", ":qa<CR>", opts)
-keymap("n", "<leader>wq", ":wq<CR>", opts)
 keymap("n", "<C-c>", ":q<CR>", opts)
-
--- Quick copy paste into system clipboard
-vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, {expr = true})
-vim.keymap.set('n', '<leader>yy', '<leader>c_', {remap = true})
-vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
 
 -- Inline motion
 keymap('x', 'il', '^o$h', opts)
@@ -47,7 +38,7 @@ keymap('o', 'il', ':normal vil<CR>',opts)
 -- Keep next in the middle
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
-vim.keymap.set('n', 'J', 'mzJ`z', opts)
+keymap('n', 'J', 'mzJ`z', opts)
 
 -- Center on page up/down
 keymap("n", "<C-u>", "<C-u>zz", opts)
@@ -57,63 +48,54 @@ keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<leader>-", ":sp<CR>", opts)
 keymap("n", "<leader>|", ":vsp<CR>", opts)
 
--- subtitute.nvim
-keymap("n", "<leader>s", "<cmd>lua require('substitute').operator()<cr>", term_opts)
-keymap("n", "<leader>ss", "<cmd>lua require('substitute').line()<cr>", term_opts)
-keymap("n", "<leader>S", "<cmd>lua require('substitute').eol()<cr>", term_opts)
-keymap("x", "<leader>s", "<cmd>lua require('substitute').visual()<cr>", term_opts)
+-- Subtitute
+keymap("n", "<leader>s", "<cmd>lua require('substitute').operator()<cr>", opts)
+keymap("n", "<leader>ss", "<cmd>lua require('substitute').line()<cr>", opts)
+keymap("n", "<leader>S", "<cmd>lua require('substitute').eol()<cr>", opts)
+keymap("x", "<leader>s", "<cmd>lua require('substitute').visual()<cr>", opts)
 
 -- indent code block
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
-
--- LSP
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
-vim.keymap.set('n', '<C-S-k>', vim.lsp.buf.signature_help, opts)
-vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, opts)
-vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action, opts)
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
 
 -- Buffer
-vim.keymap.set('n', '<leader>bd','<cmd>bd<CR>', opts)
-vim.keymap.set('n', '<leader>bn','<cmd>BufferLineCycleNext<CR>', opts)
-vim.keymap.set('n', '<leader>bp','<cmd>BufferLineCyclePrev<CR>', opts)
-vim.keymap.set('n', '<leader>bc','<cmd>BufferLinePickClose<CR>', opts)
-vim.keymap.set('n', '<leader>bmn','<cmd>BufferLineMoveNext<CR>', opts)
-vim.keymap.set('n', '<leader>bmp','<cmd>BufferLineMovePrev<CR>', opts)
+keymap('n', '<leader>bd','<cmd>bd<CR>', opts)
+keymap('n', '<leader>bn','<cmd>BufferLineCycleNext<CR>', opts)
+keymap('n', '<leader>bp','<cmd>BufferLineCyclePrev<CR>', opts)
+keymap('n', '<leader>bc','<cmd>BufferLinePickClose<CR>', opts)
+keymap('n', '<leader>bmn','<cmd>BufferLineMoveNext<CR>', opts)
+keymap('n', '<leader>bmp','<cmd>BufferLineMovePrev<CR>', opts)
 
 -- Tab
-vim.keymap.set('n', '<leader>tn','<cmd>tabnext<CR>', opts)
-vim.keymap.set('n', '<leader>tp','<cmd>tabprevious<CR>', opts)
-vim.keymap.set('n', '<leader>tc','<cmd>tabclose<CR>', opts)
+keymap('n', '<leader>tn','<cmd>tabnext<CR>', opts)
+keymap('n', '<leader>tp','<cmd>tabprevious<CR>', opts)
+keymap('n', '<leader>tc','<cmd>tabclose<CR>', opts)
 
 -- Telescope
-vim.keymap.set('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
-vim.keymap.set('n', '<leader>fg',  "<cmd>lua require('telescope.builtin').live_grep({only_sort_text = true})<cr>", opts)
-vim.keymap.set('n', '<leader>fb',  "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
-vim.keymap.set('n', '<leader>fh',  "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
-vim.keymap.set('n', '<leader>fs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
-vim.keymap.set('n', '<leader>fd',  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opts)
-vim.keymap.set('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').current_buffer_tags()<cr>", opts)
-vim.keymap.set('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
-vim.keymap.set('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
-vim.keymap.set('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
-vim.keymap.set('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
-vim.keymap.set('n', ',fh',':execute \'Telescope help_tags default_text=\' . expand(\'<cword>\')<CR>', opts)
+keymap('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
+keymap('n', '<leader>fg',  "<cmd>lua require('telescope.builtin').live_grep({only_sort_text = true})<cr>", opts)
+keymap('n', '<leader>fb',  "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
+keymap('n', '<leader>fh',  "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
+keymap('n', '<leader>fs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
+keymap('n', '<leader>fd',  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opts)
+keymap('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').current_buffer_tags()<cr>", opts)
+keymap('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
+keymap('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
+keymap('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
+keymap('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
+keymap('n', ',fh',':execute \'Telescope help_tags default_text=\' . expand(\'<cword>\')<CR>', opts)
 
 -- Telescope LSP
-vim.keymap.set('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
-vim.keymap.set('n', '<leader>gd',  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", {silent = true})
-vim.keymap.set('n', '<leader>gi',  "<cmd> Telescope lsp_implementation<CR>", {silent = true})
-vim.keymap.set('n', '<leader>gr',  "<cmd> Telescope lsp_references<CR>", {silent = true})
-vim.keymap.set('n', '<leader>gh',"<cmd>ClangdSwitchSourceHeader<CR>", opts)
-vim.keymap.set('n', ',gs',':execute \'Telescope lsp_dynamic_workspace_symbols default_text=\' . expand(\'<cword>\')<CR>', opts)
-vim.keymap.set('n', ',gd',  "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
-vim.keymap.set('n', ',gr',  "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
-vim.keymap.set('n', ',goc',  "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", opts)
-vim.keymap.set('n', ',gic',  "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", opts)
+keymap('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
+keymap('n', '<leader>gd',  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", {silent = true})
+keymap('n', '<leader>gi',  "<cmd> Telescope lsp_implementation<CR>", {silent = true})
+keymap('n', '<leader>gr',  "<cmd> Telescope lsp_references<CR>", {silent = true})
+keymap('n', '<leader>gh',"<cmd>ClangdSwitchSourceHeader<CR>", opts)
+keymap('n', ',gs',':execute \'Telescope lsp_dynamic_workspace_symbols default_text=\' . expand(\'<cword>\')<CR>', opts)
+keymap('n', ',gd',  "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
+keymap('n', ',gr',  "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
+keymap('n', ',goc',  "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", opts)
+-- keymap('n', ',gic',  "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", opts)
 
 -- Open
 keymap("n", "<leader>nf", "<cmd> NvimTreeFindFile<CR>", opts)
@@ -122,9 +104,6 @@ keymap("n", "<leader>oe", '<cmd>lua vim.diagnostic.open_float({scope="line"})<CR
 
 -- Vista
 keymap("n", "<F8>", '<cmd>Vista!!<CR>', opts)
-
--- UndoTree
-vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
 
 -- cscope
 csearch = function(operation, default_symbol)
@@ -142,23 +121,64 @@ keymap("n", "<leader>cd", [[<cmd>lua csearch('d', vim.fn.expand("<cword>"))<cr>]
 -- keymap("n", "<leader>ca", [[<cmd>lua csearch('a', vim.fn.expand("<cword>"))<cr>]], opts)
 
 -- quickfix
-vim.keymap.set("n", "<leader>co", ':colder<CR>', opts)
-vim.keymap.set("n", "<leader>ci", ':cnewer<CR>', opts)
-vim.keymap.set("n", "<leader>cn", ':cnext<CR>', opts)
-vim.keymap.set("n", "<leader>cp", ':cp<CR>', opts)
+keymap("n", "<leader>co", ':colder<CR>', opts)
+keymap("n", "<leader>ci", ':cnewer<CR>', opts)
+keymap("n", "<leader>cn", ':cnext<CR>', opts)
+keymap("n", "<leader>cp", ':cp<CR>', opts)
 
--- move-nvim
-vim.keymap.set('n', '<M-j>', ':MoveLine(1)<CR>', opts)
-vim.keymap.set('n', '<M-k>', ':MoveLine(-1)<CR>', opts)
-vim.keymap.set('n', '<M-h>', ':MoveHChar(-1)<CR>', opts)
-vim.keymap.set('n', '<M-l>', ':MoveHChar(1)<CR>', opts)
+-- maximizer
+keymap('n', '<C-w>z', '<cmd> MaximizerToggle<CR>', opts)
+keymap('v', '<C-w>z', '<cmd> MaximizerToggle<CR>', opts)
 
--- Visual-mode commands
-vim.keymap.set('v', '<M-j>', ':MoveBlock(1)<CR>', opts)
-vim.keymap.set('v', '<M-k>', ':MoveBlock(-1)<CR>', opts)
-vim.keymap.set('v', '<M-h>', ':MoveHBlock(-1)<CR>', opts)
-vim.keymap.set('v', '<M-l>', ':MoveHBlock(1)<CR>', opts)
+-- gitsigns
+keymap('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
+keymap('n', '<leader>ga', '<cmd>lua require"gitsigns".attach()<CR>', opts)
+-- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
 
+-- source
+keymap('n', '<leader>sv', ':source $MYVIMRC<CR>', opts)
+
+-- dap
+keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
+keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
+keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
+keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
+keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
+keymap("n", "<leader>dc", ":lua require'dap'.close()<CR> :lua require'dapui'.close()<CR>", opts)
+keymap('n', '<leader>dv',  "<cmd>lua require('telescope').extensions.dap.variables({})<CR>", opts)
+keymap('n', '<leader>df',  "<cmd>lua require('telescope').extensions.dap.frames({})<CR>", opts)
+keymap('n', '<leader>dl',  "<cmd>lua require('telescope').extensions.dap.list_breakpoints({})<CR>", opts)
+
+-- tmux navigator
+keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<cr>", opts)
+keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<cr>", opts)
+keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<cr>", opts)
+keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<cr>", opts)
+
+-- reset gi
+keymap('n', 'gi', 'gi', opts)
+
+-- hlslens
+-- keymap('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], opts)
+-- keymap('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], opts)
+-- keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], opts)
+-- keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], opts)
+-- keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], opts)
+-- keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], opts)
+
+-- diagnostic
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+
+-- highlight TODO
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
+
+-- Quick copy paste into system clipboard
+vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, {expr = true})
+vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
+
+-- hop
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
 vim.keymap.set('', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
@@ -166,43 +186,14 @@ vim.keymap.set('', 'F', function() hop.hint_char1({ direction = directions.BEFOR
 vim.keymap.set('', '<leader>fw', function() hop.hint_words() end, {remap=true})
 vim.keymap.set('', '<leader>fl', function() hop.hint_lines_skip_whitespace() end, {remap=true})
 
--- maximizer
-vim.keymap.set('n', '<C-w>z', '<cmd> MaximizerToggle<CR>')
-vim.keymap.set('v', '<C-w>z', '<cmd> MaximizerToggle<CR>')
+-- LSP
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('n', '<C-S-k>', vim.lsp.buf.signature_help, opts)
+vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, opts)
+vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action, opts)
 
--- gitsigns
-vim.keymap.set('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
-vim.keymap.set('n', '<leader>ga', '<cmd>lua require"gitsigns".attach()<CR>', opts)
-
--- source
-vim.keymap.set('n', '<leader>sv', ':source $MYVIMRC<CR>', opts)
-
--- dap
-vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
-vim.keymap.set("n", "<F10>", ":lua require'dap'.step_over()<CR>")
-vim.keymap.set("n", "<F11>", ":lua require'dap'.step_into()<CR>")
-vim.keymap.set("n", "<F12>", ":lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>")
-vim.keymap.set("n", "<leader>dc", ":lua require'dap'.close()<CR> :lua require'dapui'.close()<CR>")
-
-vim.keymap.set('n', '<leader>dv',  "<cmd>lua require('telescope').extensions.dap.variables({})<CR>", opts)
-vim.keymap.set('n', '<leader>df',  "<cmd>lua require('telescope').extensions.dap.frames({})<CR>", opts)
-vim.keymap.set('n', '<leader>dl',  "<cmd>lua require('telescope').extensions.dap.list_breakpoints({})<CR>", opts)
-
--- diagnostic
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-
--- gitsigns
--- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
-vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('cc542155c97cbffad83f39999fc7c7f4137f9312')<CR>", opts)
-
--- hightlight TODO
-vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Previous todo comment" })
-
--- tmux navigator
-keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<cr>", opts)
-keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<cr>", opts)
-keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<cr>", opts)
-keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<cr>", opts)
+-- UndoTree
+vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
