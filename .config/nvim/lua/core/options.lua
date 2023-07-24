@@ -33,5 +33,5 @@ vim.opt.ruler = false
 vim.opt.undofile = true
 vim.opt.background = dark
 vim.opt.shell = '/usr/bin/zsh'
+vim.opt.switchbuf = {"uselast", "useopen"} -- load the quickfix item into the previously used window.
 vim.g.c_syntax_for_h = 1
-
