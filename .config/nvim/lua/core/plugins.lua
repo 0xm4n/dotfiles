@@ -24,8 +24,11 @@ packer.init({
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
-	-- local resize
-	-- use '~/build/resize.nvim/'
+	-- repeat.vim
+	use 'tpope/vim-repeat'
+	-- whitespace highlighting
+	use 'ntpeters/vim-better-whitespace'
+	-- resize winodws
 	use '0xm4n/resize.nvim'
 	-- tmux navigator
 	use 'christoomey/vim-tmux-navigator'
@@ -47,20 +50,6 @@ return require('packer').startup(function(use)
 	use 'sainnhe/sonokai'
 	-- (Vim) Clipboard : copy into system clipboard
 	use 'ojroques/nvim-osc52'
-	-- Notify
-	use {
-		'rcarriga/nvim-notify',
-		config = function ()
-			require("notify").setup {
-				stages = 'fade_in_slide_out',
-				background_colour = 'FloatShadow',
-				timeout = 3000,
-			}
-			vim.notify = require('notify')
-		end
-	}
-	-- Move lines and blocks : move multiple line up and down
-	use 'fedepujol/move.nvim'
 	-- Treesitter
 	use("nvim-treesitter/nvim-treesitter", {run = ':TSUpdate'})
 	-- Symbol outline
@@ -75,10 +64,10 @@ return require('packer').startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 	-- Bookmarks
 	use "MattesGroeger/vim-bookmarks"
-	-- vim-resize
-	-- use "breuckelen/vim-resize"
 	-- Undo history visualizer
 	use 'mbbill/undotree'
+	-- Quickfix enter
+	use 'yssl/QFEnter'
 	-- hop.nvim
 	use {
 		'phaazon/hop.nvim',
@@ -86,6 +75,13 @@ return require('packer').startup(function(use)
 			require('hop').setup {}
 		end
 	}
+	-- highlight search
+	-- use {
+	-- 	'kevinhwang91/nvim-hlslens',
+	-- 	config = function()
+	-- 		require('hlslens').setup()
+	-- 	end
+	-- }
 	-- nvim-surround
 	use {
 		'kylechui/nvim-surround',
@@ -99,7 +95,18 @@ return require('packer').startup(function(use)
 		requires = {
 			{'nvim-lua/plenary.nvim'},
 		}
-
+	}
+	-- Notify
+	use {
+		'rcarriga/nvim-notify',
+		config = function ()
+			require("notify").setup {
+				stages = 'static',
+				background_colour = 'FloatShadow',
+				timeout = 3000,
+			}
+			vim.notify = require('notify')
+		end
 	}
 	-- Highlight TODO
 	use {
@@ -217,8 +224,6 @@ return require('packer').startup(function(use)
 	-- tmux-copy
 	-- use 'wincent/vim-clipper'
 	-- use 'preservim/tagbar'
-	-- Quickfix enter
-	-- use {'yssl/QFEnter'}
 	-- -- wilder.nvim
 	-- use 'gelguy/wilder.nvim'
 	-- -- fzf
