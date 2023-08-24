@@ -29,7 +29,6 @@ keymap("n", "L", "$", opts)
 -- Quick Save
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
-keymap("n", "<C-c>", ":q<CR>", opts)
 
 -- Inline motion
 keymap('x', 'il', '^o$h', opts)
@@ -43,10 +42,6 @@ keymap('n', 'J', 'mzJ`z', opts)
 -- Center on page up/down
 keymap("n", "<C-u>", "<C-u>zz", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
-
--- Split
-keymap("n", "<leader>-", ":sp<CR>", opts)
-keymap("n", "<leader>|", ":vsp<CR>", opts)
 
 -- Subtitute
 keymap("n", "<leader>s", "<cmd>lua require('substitute').operator()<cr>", opts)
@@ -71,31 +66,45 @@ keymap('n', '<leader>tn','<cmd>tabnext<CR>', opts)
 keymap('n', '<leader>tp','<cmd>tabprevious<CR>', opts)
 keymap('n', '<leader>tc','<cmd>tabclose<CR>', opts)
 
--- Telescope
+-- Telescope Find
 keymap('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
 keymap('n', '<leader>fg',  "<cmd>lua require('telescope.builtin').live_grep({only_sort_text = true})<cr>", opts)
 keymap('n', '<leader>fb',  "<cmd>lua require('telescope.builtin').buffers()<cr>", opts)
 keymap('n', '<leader>fh',  "<cmd>lua require('telescope.builtin').help_tags()<cr>", opts)
-keymap('n', '<leader>fs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
 keymap('n', '<leader>fd',  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opts)
 keymap('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').current_buffer_tags()<cr>", opts)
 keymap('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
 keymap('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
 keymap('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
+keymap('n', '<leader>fj',  "<cmd>lua require('telescope.builtin').jumplist()<cr>", opts)
 keymap('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
 keymap('n', ',fh',':execute \'Telescope help_tags default_text=\' . expand(\'<cword>\')<CR>', opts)
 
 -- Telescope LSP
-keymap('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
-keymap('n', '<leader>gd',  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", {silent = true})
-keymap('n', '<leader>gi',  "<cmd> Telescope lsp_implementation<CR>", {silent = true})
-keymap('n', '<leader>gr',  "<cmd> Telescope lsp_references<CR>", {silent = true})
-keymap('n', '<leader>gh',"<cmd>ClangdSwitchSourceHeader<CR>", opts)
-keymap('n', ',gs',':execute \'Telescope lsp_dynamic_workspace_symbols default_text=\' . expand(\'<cword>\')<CR>', opts)
-keymap('n', ',gd',  "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
-keymap('n', ',gr',  "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
-keymap('n', ',goc',  "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", opts)
+keymap('n', '<leader>ls',  "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
+keymap('n', '<leader>ld',  "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", {silent = true})
+keymap('n', '<leader>li',  "<cmd> Telescope lsp_implementation<CR>", {silent = true})
+keymap('n', '<leader>lr',  "<cmd> Telescope lsp_references<CR>", {silent = true})
+keymap('n', '<leader>lh',"<cmd>ClangdSwitchSourceHeader<CR>", opts)
+keymap('n', ',ls',':execute \'Telescope lsp_dynamic_workspace_symbols default_text=\' . expand(\'<cword>\')<CR>', opts)
+keymap('n', ',ld',  "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>", opts)
+keymap('n', ',lr',  "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
+-- keymap('n', ',goc',  "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", opts)
 -- keymap('n', ',gic',  "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", opts)
+
+-- Telescope Git
+keymap('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
+keymap('n', '<leader>gc',  "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
+keymap('n', '<leader>gb',  "<cmd>lua require('telescope.builtin').git_branches()<cr>", opts)
+keymap('n', '<leader>gdo',  "<cmd>DiffviewOpen<cr>", opts)
+keymap('n', '<leader>gdc',  "<cmd>DiffviewClose<cr>", opts)
+keymap('n', '<leader>gdr',  "<cmd>DiffviewRefresh<cr>", opts)
+keymap('n', '<leader>gdf',  "<cmd>DiffviewFileHistory %<cr>", opts)
+
+-- gitsigns
+-- keymap('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
+-- keymap('n', '<leader>ga', '<cmd>lua require"gitsigns".attach()<CR>', opts)
+-- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
 
 -- Open
 keymap("n", "<leader>nf", "<cmd> NvimTreeFindFile<CR>", opts)
@@ -129,11 +138,6 @@ keymap("n", "<leader>cp", ':cp<CR>', opts)
 -- maximizer
 keymap('n', '<C-w>z', '<cmd> MaximizerToggle<CR>', opts)
 keymap('v', '<C-w>z', '<cmd> MaximizerToggle<CR>', opts)
-
--- gitsigns
-keymap('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
-keymap('n', '<leader>ga', '<cmd>lua require"gitsigns".attach()<CR>', opts)
--- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
 
 -- source
 keymap('n', '<leader>sv', ':source $MYVIMRC<CR>', opts)
@@ -181,7 +185,7 @@ vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
 -- hop
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
+-- vim.keymap.set('', 'f', function() hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true }) end, {remap=true})
 vim.keymap.set('', 'F', function() hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true }) end, {remap=true})
 vim.keymap.set('', '<leader>fw', function() hop.hint_words() end, {remap=true})
 vim.keymap.set('', '<leader>fl', function() hop.hint_lines_skip_whitespace() end, {remap=true})
@@ -196,4 +200,5 @@ vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, opts)
 vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action, opts)
 
 -- UndoTree
-vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
+-- vim.keymap.set('n', '<F5>', vim.cmd.UndotreeToggle)
+
