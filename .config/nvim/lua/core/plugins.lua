@@ -26,6 +26,10 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	-- repeat.vim
 	use 'tpope/vim-repeat'
+	-- vim-surround
+	use 'tpope/vim-surround'
+	-- (Vim) Git
+	use 'tpope/vim-fugitive'
 	-- whitespace highlighting
 	use 'ntpeters/vim-better-whitespace'
 	-- resize winodws
@@ -40,8 +44,6 @@ return require('packer').startup(function(use)
 	use 'github/copilot.vim'
 	-- nvim better quickfix
 	use 'kevinhwang91/nvim-bqf'
-	-- (Vim) Git
-	use 'tpope/vim-fugitive'
 	-- (Vim) Git-messenger : show git commit
 	use 'rhysd/git-messenger.vim'
 	-- Gitsigns : show git modified line
@@ -73,20 +75,6 @@ return require('packer').startup(function(use)
 		'phaazon/hop.nvim',
 		config = function()
 			require('hop').setup {}
-		end
-	}
-	-- highlight search
-	-- use {
-	-- 	'kevinhwang91/nvim-hlslens',
-	-- 	config = function()
-	-- 		require('hlslens').setup()
-	-- 	end
-	-- }
-	-- nvim-surround
-	use {
-		'kylechui/nvim-surround',
-		config = function()
-			require('nvim-surround').setup { keys = 'etovxqpdygfblzhckisuran' }
 		end
 	}
 	-- Telescope
@@ -216,9 +204,15 @@ return require('packer').startup(function(use)
 			-- Misc
 			{'onsails/lspkind.nvim'},
 			{'p00f/clangd_extensions.nvim'},
-			{'nvimdev/lspsaga.nvim'},
 		}
 	}
+	use ({
+		'nvimdev/lspsaga.nvim',
+		after = 'nvim-lspconfig',
+		config = function()
+			require('lspsaga').setup({})
+		end,
+	})
 	-- Git diff view
 	-- use "sindrets/diffview.nvim"
 	-- tmux-copy
@@ -230,6 +224,20 @@ return require('packer').startup(function(use)
 	-- use {
 	-- 	'junegunn/fzf',
 	-- 	run = function() vim.fn['fzf#install']() end
+	-- }
+	-- highlight search
+	-- use {
+	-- 	'kevinhwang91/nvim-hlslens',
+	-- 	config = function()
+	-- 		require('hlslens').setup()
+	-- 	end
+	-- }
+	-- nvim-surround
+	-- use {
+	-- 	'kylechui/nvim-surround',
+	-- 	config = function()
+	-- 		require('nvim-surround').setup { keys = 'etovxqpdygfblzhckisuran' }
+	-- 	end
 	-- }
 end)
 
