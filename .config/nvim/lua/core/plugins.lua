@@ -30,6 +30,8 @@ return require('packer').startup(function(use)
 	use 'tpope/vim-surround'
 	-- (Vim) Git
 	use 'tpope/vim-fugitive'
+	-- diffview.nvim
+	use "sindrets/diffview.nvim"
 	-- whitespace highlighting
 	use 'ntpeters/vim-better-whitespace'
 	-- resize winodws
@@ -213,31 +215,5 @@ return require('packer').startup(function(use)
 			require('lspsaga').setup({})
 		end,
 	})
-	-- Git diff view
-	-- use "sindrets/diffview.nvim"
-	-- tmux-copy
-	-- use 'wincent/vim-clipper'
-	-- use 'preservim/tagbar'
-	-- -- wilder.nvim
-	-- use 'gelguy/wilder.nvim'
-	-- -- fzf
-	-- use {
-	-- 	'junegunn/fzf',
-	-- 	run = function() vim.fn['fzf#install']() end
-	-- }
-	-- highlight search
-	-- use {
-	-- 	'kevinhwang91/nvim-hlslens',
-	-- 	config = function()
-	-- 		require('hlslens').setup()
-	-- 	end
-	-- }
-	-- nvim-surround
-	-- use {
-	-- 	'kylechui/nvim-surround',
-	-- 	config = function()
-	-- 		require('nvim-surround').setup { keys = 'etovxqpdygfblzhckisuran' }
-	-- 	end
-	-- }
 end)
 
