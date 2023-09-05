@@ -1,8 +1,8 @@
 package.path = vim.fn.stdpath("config") .. "/lua/plugins/configs/?.lua;" .. package.path
 
 require("core.options")
+require("core.lazy")
 require("core.keymaps")
-require("core.plugins")
 
 require("plugins.bufferline")
 require("plugins.cscope")
