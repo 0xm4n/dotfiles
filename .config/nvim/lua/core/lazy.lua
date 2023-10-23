@@ -28,18 +28,21 @@ require("lazy").setup({
 	{ "kevinhwang91/nvim-bqf" },
 	{ "rhysd/git-messenger.vim" },
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		version = "2.20.8"
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 	},
 	{ "sainnhe/sonokai" },
 	{ "ojroques/nvim-osc52" },
 	{ "liuchengxu/vista.vim" },
-	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "MattesGroeger/vim-bookmarks" },
 	{ "mbbill/undotree" },
-	{ "yssl/QFEnter" },
-	-- { "RRethy/vim-illuminate" },
+	{ "RRethy/vim-illuminate" },
 	{ "nvim-tree/nvim-web-devicons" },
+	{ "lukas-reineke/virt-column.nvim", opts = {} },
 	-- { "github/copilot.vim" },
 	{
 		"rmagatti/auto-session",
@@ -49,7 +52,6 @@ require("lazy").setup({
 				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
 			}
 		end
-
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -137,15 +139,6 @@ require("lazy").setup({
 		config = true
 	},
 	{
-		"utilyre/barbecue.nvim",
-		version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = true,
-	},
-	{
 		"j-hui/fidget.nvim",
 		tag = "legacy",
 		event = "LspAttach",
@@ -178,6 +171,22 @@ require("lazy").setup({
 	},
 	{
 		'nvimdev/lspsaga.nvim',
-		config = true
+		config = function()
+			require('lspsaga').setup({
+				symbol_in_winbar = {
+					enable = false,
+				},
+			})
+		end,
+	},
+	{ "yssl/QFEnter" },
+	{
+		"utilyre/barbecue.nvim",
+		version = "*",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = true,
 	},
 })
