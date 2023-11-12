@@ -4,8 +4,6 @@ local opts = { noremap = true, silent = true }
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -29,6 +27,7 @@ keymap("n", "L", "$", opts)
 -- Quick Save
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
+keymap("n", "<C-c>", ":qa<CR>", opts)
 
 -- Inline motion
 keymap('x', 'il', '^o$h', opts)
@@ -64,7 +63,8 @@ keymap('n', '<leader>bmp','<cmd>BufferLineMovePrev<CR>', opts)
 -- Tab
 keymap('n', '<leader>tn','<cmd>tabnext<CR>', opts)
 keymap('n', '<leader>tp','<cmd>tabprevious<CR>', opts)
-keymap('n', '<leader>tc','<cmd>tabclose<CR>', opts)
+keymap('n', '<leader>tc','<cmd>tabnew<CR>', opts)
+keymap('n', '<leader>tx','<cmd>tabclose<CR>', opts)
 
 -- Telescope Find
 keymap('n', '<leader>ff',  "<cmd>lua require('telescope.builtin').find_files()<cr>", opts)
@@ -74,9 +74,12 @@ keymap('n', '<leader>fh',  "<cmd>lua require('telescope.builtin').help_tags()<cr
 keymap('n', '<leader>fd',  "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>", opts)
 keymap('n', '<leader>ft',  "<cmd>lua require('telescope.builtin').current_buffer_tags()<cr>", opts)
 keymap('n', '<leader>fq',  "<cmd>lua require('telescope.builtin').quickfix()<cr>", opts)
-keymap('n', '<leader>fo',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
+keymap('n', '<leader>fp',  "<cmd>lua require('telescope.builtin').oldfiles()<cr>", opts)
+keymap('n', '<leader>fo',  "<Cmd>Telescope frecency<CR>", opts)
 keymap('n', '<leader>fr',  "<cmd>lua require('telescope.builtin').resume()<cr>", opts)
 keymap('n', '<leader>fj',  "<cmd>lua require('telescope.builtin').jumplist()<cr>", opts)
+keymap('n', '<leader>fk',  "<cmd>lua require('telescope.builtin').keymaps()<cr>", opts)
+keymap('n', '<leader>fs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
 keymap('n', ',fg',  "<cmd>lua require('telescope.builtin').grep_string()<cr>", opts)
 keymap('n', ',fh',':execute \'Telescope help_tags default_text=\' . expand(\'<cword>\')<CR>', opts)
 
@@ -93,18 +96,26 @@ keymap('n', ',lr',  "<cmd>lua require('telescope.builtin').lsp_references()<cr>"
 -- keymap('n', ',gic',  "<cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>", opts)
 
 -- Telescope Git
-keymap('n', '<leader>gs',  "<cmd>lua require('telescope.builtin').git_status()<cr>", opts)
-keymap('n', '<leader>gc',  "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
+keymap('n', '<leader>gs',  "<cmd>Git<cr>", opts)
+keymap('n', '<leader>gc',  "<cmd>Gclog<cr>", opts)
+-- keymap('n', '<leader>gc',  "<cmd>lua require('telescope.builtin').git_commits()<cr>", opts)
 keymap('n', '<leader>gb',  "<cmd>lua require('telescope.builtin').git_branches()<cr>", opts)
 keymap('n', '<leader>gdo',  "<cmd>DiffviewOpen<cr>", opts)
 keymap('n', '<leader>gdc',  "<cmd>DiffviewClose<cr>", opts)
 keymap('n', '<leader>gdr',  "<cmd>DiffviewRefresh<cr>", opts)
 keymap('n', '<leader>gdf',  "<cmd>DiffviewFileHistory %<cr>", opts)
 
+-- Harpoon
+keymap('n', '<leader>ha',  "<cmd>lua require('harpoon.mark').add_file()<cr>", opts)
+keymap('n', '<leader>hm',  "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
+keymap('n', '<leader>ht',  "<cmd>Telescope harpoon marks<cr>", opts)
+keymap('n', '<leader>hn',  "<cmd>lua require('harpoon.ui').nav_next()<cr>", opts)
+keymap('n', '<leader>hp',  "<cmd>lua require('harpoon.ui').nav_prev()<cr>", opts)
+
 -- gitsigns
 -- keymap('n', '<leader>gq', '<cmd>lua require"gitsigns".setqflist()<CR>', opts)
 -- keymap('n', '<leader>ga', '<cmd>lua require"gitsigns".attach()<CR>', opts)
--- vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('acbfe1e4b4')<CR>", opts)
+vim.keymap.set('n', '<leader>gg', "<cmd>lua require('gitsigns').change_base('ca54c907')<CR>", opts)
 
 -- Open
 keymap("n", "<leader>nf", "<cmd> NvimTreeFindFile<CR>", opts)

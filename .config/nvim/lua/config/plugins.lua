@@ -38,21 +38,26 @@ require("lazy").setup({
 	{ "sainnhe/sonokai" },
 	{ "ojroques/nvim-osc52" },
 	{ "liuchengxu/vista.vim" },
-	{ "MattesGroeger/vim-bookmarks" },
+	-- { "MattesGroeger/vim-bookmarks" },
 	{ "mbbill/undotree" },
 	{ "RRethy/vim-illuminate" },
 	{ "nvim-tree/nvim-web-devicons" },
-	{ "lukas-reineke/virt-column.nvim", opts = {} },
-	-- { "github/copilot.vim" },
-	{
-		"rmagatti/auto-session",
-		config = function()
-			require("auto-session").setup {
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
-			}
-		end
-	},
+	-- { "lukas-reineke/virt-column.nvim", opts = {} },
+	{ "github/copilot.vim" },
+	-- {
+	-- 	"olimorris/persisted.nvim",
+	-- 	config = function()
+	-- 		require("persisted").setup({
+	-- 			autoload = true,
+	-- 			should_autosave = function()
+	-- 				if vim.bo.filetype == "NvimTree" then
+	-- 					return false
+	-- 				end
+	-- 				return true
+	-- 			end,
+	-- 		})
+	-- 	end
+	-- },
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VimEnter",
@@ -88,6 +93,12 @@ require("lazy").setup({
 		}
 	},
 	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension "frecency"
+		end,
+	},
+	{
 		'goolord/alpha-nvim',
 		config = function ()
 			local dashboard = require("alpha.themes.startify")
@@ -95,16 +106,22 @@ require("lazy").setup({
 		end
 	},
 	{
-		"rcarriga/nvim-notify",
-		config = function ()
-			require("notify").setup {
-				stages = "static",
-				background_colour = "FloatShadow",
-				timeout = 3000,
-			}
-			vim.notify = require("notify")
+		'ThePrimeagen/harpoon',
+		config = function()
+			require("telescope").load_extension "harpoon"
 		end
 	},
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	config = function ()
+	-- 		require("notify").setup {
+	-- 			stages = "static",
+	-- 			background_colour = "FloatShadow",
+	-- 			timeout = 3000,
+	-- 		}
+	-- 		vim.notify = require("notify")
+	-- 	end
+	-- },
 	{
 		"numToStr/Comment.nvim",
 		-- event = { "BufReadPre", "BufNewFile" },
@@ -146,39 +163,40 @@ require("lazy").setup({
 	},
 	{
 		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
+		branch = 'v3.x',
 		dependencies = {
 			{'neovim/nvim-lspconfig'},             -- Required
 			{'williamboman/mason.nvim'},           -- Optional
 			{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
 			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},         -- Required
 			{'hrsh7th/cmp-nvim-lsp'},     -- Required
 			{'hrsh7th/cmp-buffer'},       -- Optional
 			{'hrsh7th/cmp-path'},         -- Optional
+			{'hrsh7th/cmp-cmdline'},      -- Optional
+			{'hrsh7th/nvim-cmp'},         -- Required
 			{'saadparwaiz1/cmp_luasnip'}, -- Optional
 			{'hrsh7th/cmp-nvim-lua'},     -- Optional
 
 			-- Snippets
 			{'L3MON4D3/LuaSnip', run = "make install_jsregexp"}, -- Required
-			{'rafamadriz/friendly-snippets'}, -- Optional
+			-- {'rafamadriz/friendly-snippets'}, -- Optional
 
 			-- Misc
 			{'onsails/lspkind.nvim'},
-			{'p00f/clangd_extensions.nvim'},
+			-- {'p00f/clangd_extensions.nvim'},
 		}
 	},
-	{
-		'nvimdev/lspsaga.nvim',
-		config = function()
-			require('lspsaga').setup({
-				symbol_in_winbar = {
-					enable = false,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	'nvimdev/lspsaga.nvim',
+	-- 	config = function()
+	-- 		require('lspsaga').setup({
+	-- 			symbol_in_winbar = {
+	-- 				enable = false,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{ "yssl/QFEnter" },
 	{
 		"utilyre/barbecue.nvim",

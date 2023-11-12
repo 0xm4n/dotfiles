@@ -1,14 +1,32 @@
 -- indent_blankline
 require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
     show_current_context = true,
     show_current_context_start = false,
 }
+vim.g.indent_blankline_char = '¦'
+vim.g.indent_blankline_char_blankline = ' '
+vim.g.indent_blankline_show_first_indent_level = false
+
 
 -- Auto close Quickfix
 vim.cmd [[
-aug QFClose au! au WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && &buftype == "quickfix" | q | endif
 aug END
+]]
+
+-- Auto close noname buffer
+vim.cmd [[
+aug NoNameClose
+  au!
+  au WinEnter * if winnr('$') == 1 && bufname() == "" && &buftype == "quickfix" | q | endif
+aug END
+]]
+
+-- Remove colorcolumn on quickfix window
+vim.cmd [[
+au FileType qf setlocal colorcolumn=
 ]]
 
 -- vim-bookmarks
@@ -32,9 +50,6 @@ if has("persistent_undo")
     set undofile
 endif
 ]]
-
--- Fidget
-require"fidget".setup{}
 
 -- Copilot
 vim.cmd [[
@@ -70,9 +85,19 @@ vim.cmd [[
 let g:tmux_navigator_no_mappings = 1
 ]]
 
+-- quickfix
 require('bqf').setup({
 	preview = {
 		auto_preview = false,
 		win_height = 999,
 	}
 })
+
+-- highlight trailing whitespace
+vim.cmd [[
+let g:better_whitespace_ctermcolor='darkgrey'
+let g:better_whitespace_guicolor='darkgrey'
+let g:strip_whitespace_on_save=0
+let g:strip_whitelines_at_eof=0
+]]
+
