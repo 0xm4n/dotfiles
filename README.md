@@ -5,7 +5,7 @@ This repo houses a collection of custom configurations for various tools and app
 
 This repository provides custom configurations for the following tools and applications:
 - tmux: modified status lines, keymaps, enhanced copy mode, and useful plugins, etc.
-- nvim: A nvim configuration so awesome, it should be illegal
+- nvim: lsp + useful plugins
 - alacritty: nerd font, color scheme, keymaps, etc.
 - zsh: alias, syntax highlight, auto suggestions, history, etc.
 - keyboard extend layer: rules for [Karabiner(macOS goku)](https://github.com/0xm4n/dotfiles/blob/main/.config/karabiner.edn), [Keyd(Linux)](https://github.com/0xm4n/dotfiles/blob/main/.config/keyd/default.conf) and [AutoHotKey(Windows)](https://github.com/0xm4n/dotfiles/blob/main/.config/autohotkey/remap.ahk)
