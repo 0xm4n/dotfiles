@@ -1,0 +1,80 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.normal]
+black = "0x181819"
+blue = "0x76cce0"
+cyan = "0xf39660"
+green = "0x9ed072"
+magenta = "0xb39df3"
+red = "0xfc5d7c"
+white = "0xe2e2e3"
+yellow = "0xe7c664"
+
+[colors.primary]
+background = "0x2c2e34"
+foreground = "0xe2e2e3"
+
+[font]
+size = 13
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001Bp"
+key = "P"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001BP"
+key = "P"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Super"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Super"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 240
+lines = 160
