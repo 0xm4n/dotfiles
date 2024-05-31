@@ -29,6 +29,14 @@ vim.cmd [[
 au FileType qf setlocal colorcolumn=
 ]]
 
+-- Hidden no_name buffer
+vim.cmd [[
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup END
+]]
+
 -- vim-bookmarks
 -- vim.cmd [[
 -- let g:bookmark_save_per_working_dir = 1
@@ -101,3 +109,16 @@ let g:strip_whitespace_on_save=0
 let g:strip_whitelines_at_eof=0
 ]]
 
+-- osc52 passthrough tmux
+require('osc52').setup {
+	silent = true,
+	tmux_passthrough = true, -- Use tmux passthrough (requires tmux: set -g allow-passthrough on)
+}
+
+function copy()
+  if vim.v.event.operator == 'y' then
+    require('osc52').copy_visual()
+  end
+end
+
+vim.api.nvim_create_autocmd('TextYankPost', {callback = copy})
