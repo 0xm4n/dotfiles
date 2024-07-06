@@ -60,7 +60,7 @@ fi
 if [ -d "$HOME/.config/zsh" ]; then
 	mv $HOME/.config/zsh $HOME/.config/zsh_backup
 fi
-cp -rf zsh $HOME/.config/
+cp -rf ./.config/zsh $HOME/.config/
 
 # tmux
 if [ -e "$HOME/.tmux.conf" ]; then
