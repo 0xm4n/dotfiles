@@ -58,7 +58,7 @@ if [ ! -d "$HOME/.config/zsh/zsh-syntax-highlighting" ]; then
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/zsh-syntax-highlighting
 fi
 if [ -d "$HOME/.config/zsh" ]; then
-	mv -r $HOME/.config/zsh $HOME/.config/zsh_backup
+	mv $HOME/.config/zsh $HOME/.config/zsh_backup
 fi
 cp -rf zsh $HOME/.config/
 
