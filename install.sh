@@ -51,16 +51,14 @@ if [ -e "$HOME/.zshrc" ]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc_backup"
 fi
 cp .zshrc "$HOME/"
-if [ ! -d "$HOME/.config/zsh/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
-fi
-if [ ! -d "$HOME/.config/zsh/zsh-syntax-highlighting" ]; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/zsh-syntax-highlighting
-fi
+
 if [ -d "$HOME/.config/zsh" ]; then
     mv "$HOME/.config/zsh" "$HOME/.config/zsh_backup"
 fi
 cp -rf ./.config/zsh "$HOME/.config/"
+
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/zsh/zsh-syntax-highlighting
 
 # tmux
 if [ -e "$HOME/.tmux.conf" ]; then
