@@ -2,7 +2,7 @@ vim.opt.belloff = "all"			-- Just turn the dang bell off
 vim.opt.cindent = true
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true		-- highlight the current line
-vim.opt.equalalways = false		-- I don't like my windows changing all the time
+vim.opt.equalalways = true		-- I don't like my windows changing all the time
 vim.opt.fileencoding = "utf-8" 		-- the encoding written to a file
 vim.opt.fillchars = { eob = "~" }
 vim.opt.ignorecase = true		-- ignore case in search patterns
@@ -31,10 +31,7 @@ vim.opt.wildmode = "longest:full"
 vim.opt.wildoptions = "pum"
 vim.opt.ruler = false
 vim.opt.undofile = true
--- vim.opt.background = dark
-vim.opt.shell = '/usr/bin/zsh'
--- vim.opt.switchbuf = {"uselast", "useopen"} -- load the quickfix item into the previously used window.
 vim.g.c_syntax_for_h = 1
--- vim.opt.foldmethod = "manual"
--- vim.opt.foldlevelstart = 99
+vim.opt.shell = '/usr/bin/zsh'
+vim.opt.swapfile = false 		-- turn off swapfile
 
