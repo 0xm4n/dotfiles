@@ -34,4 +34,5 @@ vim.opt.undofile = true
 vim.g.c_syntax_for_h = 1
 vim.opt.shell = '/usr/bin/zsh'
 vim.opt.swapfile = false 		-- turn off swapfile
+vim.opt.equalprg="clang-format"
 
