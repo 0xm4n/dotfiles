@@ -35,3 +35,11 @@ vim.g.c_syntax_for_h = 1
 vim.opt.shell = '/usr/bin/zsh'
 vim.opt.swapfile = false 		-- turn off swapfile
 
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({fold = " "})
+
+
