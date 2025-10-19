@@ -17,7 +17,7 @@ return {
 				ensure_installed = { "clangd" },
 				automatic_installation = true,
 			}
-			require'lspconfig'.clangd.setup{
+			vim.lsp.config("clangd", {
 				cmd = {
 					"clangd",
 					"--offset-encoding=utf-16",
@@ -52,8 +52,8 @@ return {
 					vim.keymap.set("n", "gl", vim.diagnostic.open_float, { buffer = bufnr, desc = "Open Diagnostic Float" })
 					vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Go to Previous Diagnostic" })
 				end,
-			}
 
+			})
 		end
 	},
 	{
