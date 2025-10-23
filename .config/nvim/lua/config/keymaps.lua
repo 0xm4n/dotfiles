@@ -94,7 +94,6 @@ keymap('n', '<leader>li',  "<cmd> Telescope lsp_implementation<CR>", {silent = t
 keymap('n', '<leader>lr',  "<cmd> Telescope lsp_references<CR>", {silent = true})
 keymap('n', '<leader>lh',"<cmd>ClangdSwitchSourceHeader<CR>", opts)
 keymap('n', '<leader>th',"<cmd>ClangdTypeHierarchy<CR>", opts)
-keymap('n', '<leader>si',"<cmd>ClangdSymbolInfo<CR>", opts)
 
 keymap('n', ',ls',':execute \'Telescope lsp_dynamic_workspace_symbols default_text=\' . expand(\'<cword>\')<CR>', opts)
 
