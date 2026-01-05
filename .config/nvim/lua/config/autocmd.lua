@@ -63,3 +63,11 @@ vim.cmd [[
 let g:tmux_navigator_no_mappings = 1
 ]]
 
+-- gf for .rej files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+    pattern = "*.rej",
+    callback = function()
+        vim.opt_local.includeexpr = "substitute(v:fname, '^[ab]/', '', '')"
+        vim.bo.filetype = "diff"
+    end,
+})
