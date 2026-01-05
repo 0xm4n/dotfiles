@@ -1,0 +1,23 @@
+find . -name "*.rej" | while read rej; do
+    target="${rej%.rej}"
+    porig="${target}.porig"
+    
+    # Run wiggle silently
+    wiggle --replace "$target" "$rej" > /dev/null 2>&1
+    ret=$?
+
+    # 1. Handle .rej file deletion based on exit code
+    if [ $ret -eq 0 ]; then
+        echo "✅ [Fixed] $target"
+        rm "$rej"
+    elif [ $ret -eq 1 ]; then
+        echo "⚠️ [Conflict] $target (Markers injected)"
+    else
+        echo "❌ [Failed] $target (Exit code $ret, .rej kept)"
+    fi
+
+    # 2. Force delete the .porig backup file
+    if [ -f "$porig" ]; then
+        rm "$porig"
+    fi
+done
