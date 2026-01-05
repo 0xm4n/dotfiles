@@ -157,3 +157,33 @@ vim.keymap.set('', '<leader>fl', function() require('hop').hint_lines_skip_white
 -- vim.keymap.set('n', '<leader>fg', function() require('fzf-lua').live_grep() end)
 -- vim.keymap.set('n', '<leader>fb', function() require('fzf-lua').buffers() end)
 --
+
+-- Safe Delete Current File
+vim.keymap.set('n', '<leader>dc',
+function()
+	local file = vim.fn.expand('%')
+	if file == '' then
+		print("No file associated with this buffer")
+		return
+	end
+	-- Confirmation Dialog
+	-- "&Yes\n&No" sets hotkeys 'y' and 'n'
+	-- The number '2' at the end makes "No" the default selection
+	local choice = vim.fn.confirm("Delete '" .. file .. "' from disk?", "&Yes\n&No", 2)
+
+	if choice == 1 then
+		-- Only executes if you press 'y'
+		local success, err = os.remove(file)
+		if success then
+			vim.cmd('bdelete!')
+			vim.cmd('redraw')
+			print("File deleted: " .. file)
+		else
+			vim.cmd('redraw')
+			print("Failed to delete: " .. (err or "Unknown error"))
+		end
+	else
+		vim.cmd('redraw')
+	end
+end
+)
