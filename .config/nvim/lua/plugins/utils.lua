@@ -45,11 +45,16 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = { "BufReadPost", "BufNewFile" },
-		version = "2.20.8",
+		main = "ibl",
 		config = function ()
-			require("indent_blankline").setup {
-			    show_current_context = true,
-			    show_current_context_start = false,
+			require("ibl").setup {
+			    scope = {
+				    show_start = false,
+				    show_end = false,
+			    },
+			    indent = {
+				    char = '¦',
+			    },
 			}
 			vim.g.indent_blankline_char = '¦'
 			vim.g.indent_blankline_char_blankline = ' '
